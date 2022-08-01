@@ -2,7 +2,18 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 
-# Extract
+
+"""
+Scraping script to retrieve data from indeed.
+To Implement:
+Indeed NZ(Soft Dev) [x]
+Indeed AU(Soft Dev) []
+Indeed NZ(Data Sci) []
+Indeed AU(Data Sci) []
+Combine all into .csv for project [] 
+"""
+
+# Extract- NZ Indeed(Software Developer)
 def extract(page):
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
     urlNZ = f"https://nz.indeed.com/jobs?q=software%20developer&l=New%20Zealand&vjk=118731a217acab33&start={page}"
@@ -41,4 +52,6 @@ df = pd.DataFrame(jobList)
 
 print(df.head())
 
-df.to_csv('jobs.csv')
+df.to_csv('NZSD.csv') #NZ Software Dev Jobs
+
+#Extract - Au Indeed(Software Developer)
