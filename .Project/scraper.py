@@ -8,8 +8,8 @@ Scraping script to retrieve data from indeed.
 To Implement:
 Indeed NZ(Soft Dev) [x]
 Indeed AU(Soft Dev) []
-Indeed NZ(Data Sci) []
-Indeed AU(Data Sci) []
+Indeed NZ(Data Analyst) []
+Indeed AU(Data Analyst) []
 Combine all into .csv for project [] 
 """
 
@@ -43,7 +43,7 @@ def transform(soup):
 
 jobList = []
 
-for i in range(0, 40, 10):
+for i in range(0, 60, 10):
     print(f'Getting Page, {i}')
     c = extract(0)
     transform(c)
