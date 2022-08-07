@@ -40,11 +40,16 @@ def transformnz(soup):
             summary = item.find('div', class_='job-snippet').text.strip()
         except AttributeError:
             summary = 'N/A'
+        try:
+            posted = item.find('span', class_='date').text.strip()
+        except AttributeError:
+            posted = 'N/A'
         job = {
             'Title' : title,
             'Company' : company,
             'Location' : location,
-            'Summary' : summary
+            'Summary' : summary,
+            'Posted' : posted
         }
         jobListnz.append(job)
     return
@@ -86,12 +91,17 @@ def transformau(soup):
             summary = item.find('div', class_='job-snippet').text.strip()
         except AttributeError:
             summary = 'N/A'
+        try:
+            posted = item.find('span', class_='date').text.strip()
+        except AttributeError:
+            posted = 'N/A'
         
         job = {
             'Title' : title,
             'Company' : company,
             'Location' : location,
-            'Summary' : summary
+            'Summary' : summary,
+            'Posted' : posted
         }
         jobListau.append(job)
     return
