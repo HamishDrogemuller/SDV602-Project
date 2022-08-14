@@ -7,15 +7,13 @@ import pandas as pd
 Scraping script to retrieve data from indeed.
 To Implement:
 Indeed NZ(Soft Dev) [x]
-Indeed AU(Soft Dev) []
-Indeed NZ(Data Analyst) []
-Indeed AU(Data Analyst) []
+Indeed AU(Soft Dev) [x]
 Combine all into .csv for project [] 
 """
 
 # Extract- NZ Indeed(Software Developer)
 def extractnz(page):
-    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36 OPR/89.0.4447.83'}
     urlNZ = f"https://nz.indeed.com/jobs?q=software%20developer&l=New%20Zealand&vjk=118731a217acab33&start={page}"
     r = requests.get(urlNZ, headers)
     soup = BeautifulSoup(r.content, 'html.parser')
@@ -56,20 +54,20 @@ def transformnz(soup):
 
 jobListnz = []
 
-for i in range(0, 40, 10):
+for i in range(0, 60, 10):
     print(f'Getting Page, {i}')
     c = extractnz(0)
     transformnz(c)
 
-df = pd.DataFrame(jobListnz)
+dfnz = pd.DataFrame(jobListnz)
 
-print(df.head())
+print(dfnz.head())
 
-df.to_csv('NZSD.csv') #NZ Software Dev Jobs
+dfnz.to_csv('NZSD.csv') #NZ Software Dev Jobs
 
 #Extract - Au Indeed(Software Developer)
 def extractau(page):
-    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36 OPR/89.0.4447.83'}
     urlAU = f"https://au.indeed.com/jobs?q=Software%20Developer&start={page}&vjk=7fbac8aeaba92384"
     r = requests.get(urlAU, headers)
     soup = BeautifulSoup(r.content, 'html.parser')
@@ -108,7 +106,7 @@ def transformau(soup):
 
 jobListau = []
 
-for i in range(0, 40, 10):
+for i in range(0, 60, 10):
     print(f'Getting Page, {i}')
     c = extractau(0)
     transformau(c)
