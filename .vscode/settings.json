@@ -1,0 +1,7 @@
+{
+    "python.analysis.extraPaths": [
+        "C:\\Users\\corve\\source\\repos\\SDV602-Project\\.Project",
+        "C:\\Users\\corve\\AppData\\Roaming\\Python\\Python38\\site-packages",
+        "C:\\Users\\corve\\AppData\\Roaming\\Python\\Python38\\Scripts"
+    ]
+}
