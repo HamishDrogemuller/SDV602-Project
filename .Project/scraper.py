@@ -14,9 +14,10 @@ Combine all into .csv for project []
 # Extract- NZ Indeed(Software Developer)
 def extractnz(page):
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36 OPR/89.0.4447.83'}
-    urlNZ = f"https://nz.indeed.com/jobs?q=software%20developer&l=New%20Zealand&vjk=118731a217acab33&start={page}"
+    urlNZ = f"https://nz.indeed.com/jobs?q=software+developer&l=New+Zealand&vjk=118731a217acab33&start={page}"
     r = requests.get(urlNZ, headers)
     soup = BeautifulSoup(r.content, 'html.parser')
+    
     return soup
 
 
