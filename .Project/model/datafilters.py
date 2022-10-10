@@ -48,6 +48,9 @@ def moonCount():
     values = list(barData.values())
     return labels, values
 
+def distanceFromSun():
+    pass
+
 
 
 def locationData():

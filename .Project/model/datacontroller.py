@@ -25,7 +25,7 @@ data = []
 def getData(filePath):
     global data
     with open(filePath, 'r', newline="", encoding="utf8") as csvfile:
-        # header = ["name-english", "name-greek", "main-type", "sub-type", "description"]
+        # header = ["Planet", "Color", "Mass (10^24kg)", "Diameter (km)", "Density (kg/m^3)", "Escape Velocity (km/s)", "Rotation Period (hours)", "Distance from Sun (10^6 km)", "Perihelion (10^6 km)", "Aphelion (10^6 km)", "Orbital Velocity (km/s)", "Orbital Eccentricity", "Obliquity to Orbit (degrees)", "Mean Temperature (C)", "Number of Moons", "Ring System?", "Global Magnetic Field?"]
         dataset = csv.reader(csvfile)
         output = []
         for row in dataset:

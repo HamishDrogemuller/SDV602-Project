@@ -19,7 +19,8 @@ def login_main():
         [sg.InputText('')],
         [sg.Button('Login')],
         [sg.Button('Exit Application')]]
-    window = sg.Window('Planetoid Analysis Tool Login Page', layout, finalize=True)
+    window = sg.Window('Planetoid Analysis Tool Login Page', layout, 
+                       finalize=True, size=(600, 300), element_justification='c', font=('Times New Roman', 20), resizable=True)
     event, values = window.read()
     print(event, values)
 
@@ -44,7 +45,7 @@ def login_main_Welcome():
         [sg.Button('View Data')],
         [sg.Button('Logout')]]
     window = sg.Window('Data Analysis Tool Login Page', layout,
-                       finalize=True, size=(350, 150), element_justification='c')
+                       finalize=True, size=(600, 500), element_justification='c', font=('Times New Roman', 20), resizable=True)
     event, values = window.read()
     print(event, values)
 
@@ -67,7 +68,7 @@ def login_main_Unsuccessful():
         [sg.Text('The entered password and or username is incorrect.\nPlease enter your correct username and password')],
         [sg.Button('Login')]]
     window = sg.Window('Data Analysis Tool Login Page', layout,
-                       finalize=True, size=(350, 150), element_justification='c')
+                       finalize=True, size=(600, 500), element_justification='c', font=('Times New Roman', 20), resizable=True)
     event, values = window.read()
     print(event, values)
 

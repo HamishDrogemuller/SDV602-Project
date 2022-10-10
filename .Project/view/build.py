@@ -57,7 +57,8 @@ def show(nextScreen, previousScreen):
                        default_button_element_size=(12, 1),
                        finalize=True,
                        element_justification='center',
-                       size=(1000, 700))
+                       size=(1200, 800),
+                       resizable=True)
     
     fig_canvas_agg = draw_figure(window['-CANVAS-'].TKCanvas, fig)
 
@@ -80,15 +81,15 @@ def show(nextScreen, previousScreen):
         if event == 'About...':
             sg.popup('About this program', 'Version 1.0',
                      'PySimpleGUI Version', sg.version,  grab_anywhere=True,)
-        if event == 'Property issue dates(DES1)':
+        if event == 'Planet Diameter(DES1)':
             window.close()
             des.des1.show()
             window.close()    
-        if event == 'Types of ownership(DES2)':
+        if event == 'Number of Moons(DES2)':
             window.close()
             des.des2.show()
             window.close()
-        if event == 'Number of property owners(DES3)':
+        if event == 'Distance from Sun(DES3)':
             window.close()
             des.des3.show()
             window.close()
