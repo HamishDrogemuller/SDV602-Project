@@ -21,7 +21,7 @@ def Diameter():  # piechart data
     return labels, values
 
 
-def moonCount():
+def moonCount(): # bar chart data
     data = dc.getData(dc.filePath)
     data.pop(0)
     barData = {

@@ -54,7 +54,7 @@ class DataExplorerScreen():
         
 des1 = DataExplorerScreen(build.explorer_screen_name, df.Diameter)
 des2 = DataExplorerScreen(build.explorer_screen_name, df.moonCount)
-des3 = DataExplorerScreen(build.explorer_screen_name, df.Diameter)
+des3 = DataExplorerScreen(build.explorer_screen_name, df.distanceFromSun)
 
 des1.set_next_previous(des2,des3)
 des2.set_next_previous(des3,des1)
