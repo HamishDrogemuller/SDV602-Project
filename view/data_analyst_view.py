@@ -6,6 +6,7 @@ import controller.DES.exit_button as exit_button
 import controller.DES.figure_list_select as figure_list_select
 import controller.DES.new_des as new_des
 import controller.DES.open_csv as open_csv
+import controller.DES.center as center
 import controller.Upload.uploader as uploader
 import controller.User.deploy_chat_button as deploy_chat_button
 import PySimpleGUI as sg
@@ -97,9 +98,6 @@ class DES_View(object):
             
             func = func_tuple[0]
             
-            
-            self.window['-MULTILINE-'].update(inspect.getsource(func))  # show source code to function in multiline
-            
             fig = func(**kwargs)                                    # call function to get the figure
             
             # ** IMPORTANT ** Clean up previous drawing before drawing again
@@ -116,16 +114,17 @@ class DES_View(object):
 
 
 
+
     def set_up_layout(self,**kwargs):
 
         sg.theme('LightPurple')
-        figure_w, figure_h = 600, 600
+        figure_w, figure_h = 800, 800
         # define the form layout
         listbox_values = list(self.fig_dict)
         print(f"GOT List box {listbox_values}")
         # one variable per call to sg 
         # if there is a control / input with it add the name to the controls list
-        self.components['figures_list'] =  sg.Listbox(values=listbox_values, enable_events=True, size=(28, len(listbox_values)), key='-LISTBOX-')
+        self.components['figures_list'] =  sg.Listbox(values=listbox_values, enable_events=True, size=(40, len(listbox_values)), key='-LISTBOX-')
         self.controls += [figure_list_select.accept]
 
         self.components['text_spacer'] = sg.Text(' ' * 12)
@@ -150,11 +149,11 @@ class DES_View(object):
         self.components['header'] =   sg.Text('Data Analysis Platform', font=('current 18'))
         self.components['list_box_padding'] =  sg.Col(col_listbox, pad=(5, (3, 330))) 
         self.components['canvas']   =   sg.Canvas(size=(figure_w, figure_h), key='-CANVAS-') 
-        self.components['MLine']    =  sg.MLine(size=(70, 35), pad=(5, (3, 90)), key='-MULTILINE-')   
+           
         self.layout = [
                 [self.components['header']],[self.components['data_file_name']],
-                [self.components['list_box_padding'],self.components['canvas'],
-                self.components['MLine']]
+                [self.components['list_box_padding'],self.components['canvas']
+                ]
                 ]
 
     def render(self):
@@ -162,6 +161,7 @@ class DES_View(object):
         # create the form and show it without the plot
         if self.layout != [] :
             self.window =sg.Window('Demonstration Data Analysis Platform', self.layout, grab_anywhere=False, finalize=True, resizable=True)
+            center.move_center(self.window)
             
 
     def accept_input(self):

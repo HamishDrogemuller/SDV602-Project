@@ -5,6 +5,8 @@ import sys
 sys.dont_write_bytecode = True
 import PySimpleGUI as sg
 
+import controller.DES.center as center
+
 
 def accept( event, values, state):
     from view.data_analyst_view import DES_View
