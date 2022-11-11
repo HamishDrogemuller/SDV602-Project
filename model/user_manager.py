@@ -32,10 +32,11 @@ class UserManager(object):
                                                 "Password":"A_LOOONG_PASSWORD"+('X'*50),
                                                 "Status":"STATUS_STRING"})
 
-        result = self.jsnDrop.create("tblChat",{"PersonID PK":"A_LOOONG_NAME"+('X'*50),
+        result = self.jsnDrop.create("tblChat",{"Time PK": self.now_time_stamp(),
+                                                "PersonID":"A_LOOONG_NAME"+('X'*50),
                                                 "DESNumber":"A_LOOONG_DES_ID"+('X'*50),
-                                                "Chat":"A_LOONG____CHAT_ENTRY"+('X'*255),
-                                                "Time": self.now_time_stamp()})
+                                                "Chat":"A_LOONG____CHAT_ENTRY"+('X'*255)
+                                                })
         UserManager.this_user_manager = self
 
         # self.test_api()
@@ -87,10 +88,11 @@ class UserManager(object):
         else: 
             user_id = UserManager.current_user
             des_screen = UserManager.current_screen
-            api_result = self.jsnDrop.store("tblChat",[{'PersonID':user_id,
+            api_result = self.jsnDrop.store("tblChat",[{'Time': self.now_time_stamp(),
+                                                        'PersonID':user_id,
                                                         'DESNumber':f'{des_screen}',
-                                                        'Chat':message,
-                                                        'Time': self.now_time_stamp()}])
+                                                        'Chat':message
+                                                        }])
             if "ERROR" in api_result :
                 result = self.jsnDrop.jsnStatus
             else:
@@ -145,6 +147,11 @@ class UserManager(object):
 
         result = self.jsnDrop.drop("tblTestUser")
         print(f"Drop Result from UserManager {result}")
+        
+    def dropDatabase(self):
+        result = self.jsnDrop.drop("tblChat")
+        result = self.jsnDrop.drop("tblUser")
+
 
 
 

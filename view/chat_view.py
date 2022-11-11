@@ -38,13 +38,13 @@ class ChatView(object):
     def chat_display_update(self, UserManager):
         print("Thread chat")
         #sleep(2)
-
+    
         # Check there is a window before sending an event to it
         if self.window != None:
             self.chat_count += 1
             # Go to network service to get the Chats
             result = self.JsnDrop.select("tblChat",f"DESNumber = '{UserManager.current_screen}'")
-            print(result)
+            print('this is the result of selecting table chat',result)
             if result != "Data error. Nothing selected from tblChat":
                 messages = ""
                 # Sort the result records by the Time field
@@ -60,15 +60,15 @@ class ChatView(object):
                         new_display = f"{record['PersonID']}[{record['Chat']}]\n"
                     messages +=   new_display
 
-                UserManager.chat_list = [messages]
+                UserManager.chat_count = [messages]
 
                 # Keep number of messages down to 5
-                if len(UserManager.chat_list) > 5:
-                    UserManager.chat_list = UserManager.chat_list[:-5]
+                if len(UserManager.chat_count) > 5:
+                    UserManager.chat_count = UserManager.chat_count[:-5]
                 
                 # Makes a string of messages to update the display
                 Update_Messages = ""
-                for messages in UserManager.chat_list:
+                for messages in UserManager.chat_count:
                     Update_Messages+= messages
                 
                 # Send the Event back to the window if we have n't already stopped
@@ -94,8 +94,8 @@ class ChatView(object):
         
         # one variable per call to sg 
         # if there is a control / input with it add the name to the controls list
-        self.components['ChatDisplay'] = sg.Multiline('CHATTY',autoscroll=True,disabled=True, key='ChatDisplay',size=(20,10))
-        self.components['Message'] =sg.InputText('Type a message', key='Message',size=(20,50))
+        self.components['ChatDisplay'] = sg.Multiline('CHATTY',autoscroll=True,disabled=True, key='ChatDisplay',size=(70,25))
+        self.components['Message'] =sg.InputText('Type a message', key='Message',size=(40,100))
         self.components['Send'] = sg.Button('Send', key='Send', size=(10,2))
         self.controls += [chat_button.accept]
 
