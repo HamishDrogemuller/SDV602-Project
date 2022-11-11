@@ -58,7 +58,7 @@ class ChatView(object):
                             new_display = f"{record['PersonID']}[{record['Chat']}]\n"
                     else: # Not entirely happy with this one - just what to do until there is a time?
                         new_display = f"{record['PersonID']}[{record['Chat']}]\n"
-                    messages +=   new_display
+                    messages += new_display
 
                 UserManager.chat_count = [messages]
 
