@@ -18,7 +18,10 @@ def accept( event, values,state):
         from model.user_manager import UserManager
         a_user_manager = UserManager()
         
+        # Drop Database call 
         #a_user_manager.dropDatabase()
+        
+        a_user_manager.testData()
 
         # get user name and password from the "values" or "state"
         user_name = values['User']
@@ -27,6 +30,9 @@ def accept( event, values,state):
 
         login_result = a_user_manager.login(user_name,password)
         #print(f"Got login result: {login_result}")
+        
+        #Populate data call
+        a_user_manager.data_populate()
 
         # Testing Chat
         if login_result == "Login Success":

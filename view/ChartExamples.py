@@ -23,9 +23,12 @@ See here: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html#
 
 import sys
 sys.dont_write_bytecode = True
-
+import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+from model.data.data_scan import DataManager as dm
+
+data_values = dm.store_data_source()
 
 def line_plot(**kwargs):
     """
@@ -74,10 +77,10 @@ def names_labels(**kwargs):
     Args 
           **kwargs lets you pass arguments into this function
     """
-    x_label = 'Day'
-    y_label = 'Temperature in Celsius'
-    title_label = 'Temperature Graph'
-    x_values = range(1, 9)
+    x_label = 'Year'
+    y_label = 'Deaths'
+    title_label = 'Graph of Deaths'
+    x_values = range(17, 19)
     y_values = [25.6, 24.1, 26.7, 28.3, 27.5, 30.5, 32.8, 33.1]
     if 'x_label' in kwargs :
         x_label = kwargs['x_label']
@@ -300,7 +303,7 @@ if __name__ == "__main__":
 
     show_figFunc(multiple_plots)
     show_figFunc(bar_chart)
-    show_figFunc(histogram, title="Our Name for Title")
+    show_figFunc(histogram, title="Births and Deaths NZ")
     show_figFunc(scatter_plots)
     show_figFunc(stack_plot)
     show_figFunc(pie_chart1)
