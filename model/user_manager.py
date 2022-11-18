@@ -1,6 +1,7 @@
 from model.network.jsn_drop_service import jsnDrop
 from time import gmtime  #  gmt_time returns UTC time struct  
 from datetime import datetime
+import pandas as pd
 
 class UserManager(object):
     current_user = None
@@ -37,6 +38,11 @@ class UserManager(object):
                                                 "DESNumber":"A_LOOONG_DES_ID"+('X'*50),
                                                 "Chat":"A_LOONG____CHAT_ENTRY"+('X'*255)
                                                 })
+        result = self.jsnDrop.create("tblData",{"ID PK AUTO ": 190182,
+                                                "Period": 10000,
+                                                "Birth_Death": "A_long_list",
+                                                "Region": "Long_Region_Name"+('X'*100),
+                                                "Count": 1234567890})
         UserManager.this_user_manager = self
 
         # self.test_api()
@@ -126,6 +132,26 @@ class UserManager(object):
                 result = self.jsnDrop.jsnStatus
 
         return result
+    
+    def data_populate(self):
+        if UserManager.current_status == "Logged In":
+            data = pd.read_csv("data/bd-dec17-births-deaths-by-region.csv")
+            df = pd.DataFrame(data)
+            for row in df.itertuples():
+                api_result = self.jsnDrop.store("tblData",[{
+                                                        "Period":row.Period,
+                                                        "Birth_Death":row.Birth_Death,
+                                                        "Region":row.Region,
+                                                        "Count":row.Count}])     
+            if not("ERROR" in api_result):
+                UserManager.current_status = "Logged Out"
+                result = "Logged Out"
+            else:
+                result = self.jsnDrop.jsnStatus
+                
+    def testData(self):
+        result = self.jsnDrop.select("tblData","Region") # Select from tblUser where Region = Nelson
+        print(f"Select Result from UserManager {result}")
 
 
     def test_api(self):
@@ -151,6 +177,12 @@ class UserManager(object):
     def dropDatabase(self):
         result = self.jsnDrop.drop("tblChat")
         result = self.jsnDrop.drop("tblUser")
+        result = self.jsnDrop.drop("tblData")
+        
+    def upload_database(self):
+        result = self.jsnDrop.upload("tblUser")
+        result = self.jsnDrop.upload("tblChat")
+        result = self.jsnDrop.upload("tblData")
 
 
 

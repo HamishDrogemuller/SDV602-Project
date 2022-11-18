@@ -35,10 +35,6 @@ class DataManager():
 
         target_file_obj.writelines(lines)
         
-            
-
-
-
 
     def get_file(self,path_to_file):
         try:
@@ -100,8 +96,19 @@ class DataManager():
             return None,None
 
         DataManager.dict_list = result
+        print(result)
         DataManager.value_list = values 
+        print(values)
         return result,values
+    
+    def store_data_source():
+        """
+        Stores the processed data for use in other files
+        """
+        data_source_dl = DataManager.dict_list
+        data_source_vl = DataManager.value_list
+            
+        
 
 
     def sum_of(self,column_name, a_list_of_dictionary):
